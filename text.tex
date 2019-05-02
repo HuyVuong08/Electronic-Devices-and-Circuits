@@ -1,0 +1,126 @@
+\documentclass[12pt]{extarticle}
+%Some packages I commonly use.
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{enumerate}
+\usepackage[utf8]{inputenc}
+\usepackage[top=1 in,bottom=1in, left=1 in, right=1 in]{geometry}
+
+%A bunch of definitions that make my life easier
+\newcommand{\matlab}{{\sc Matlab} }
+\newcommand{\cvec}[1]{{\mathbf #1}}
+\newcommand{\rvec}[1]{\vec{\mathbf #1}}
+\newcommand{\ihat}{\hat{\textbf{\i}}}
+\newcommand{\jhat}{\hat{\textbf{\j}}}
+\newcommand{\khat}{\hat{\textbf{k}}}
+\newcommand{\minor}{{\rm minor}}
+\newcommand{\trace}{{\rm trace}}
+\newcommand{\spn}{{\rm Span}}
+\newcommand{\rem}{{\rm rem}}
+\newcommand{\ran}{{\rm range}}
+\newcommand{\range}{{\rm range}}
+\newcommand{\mdiv}{{\rm div}}
+\newcommand{\proj}{{\rm proj}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\<}{\langle}
+\renewcommand{\>}{\rangle}
+\renewcommand{\emptyset}{\varnothing}
+\newcommand{\attn}[1]{\textbf{#1}}
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem*{definition}{Definition}
+\newtheorem*{example}{Example}
+\newtheorem*{note}{Note}
+\newtheorem{exercise}{Exercise}
+\newcommand{\bproof}{\bigskip {\bf Proof. }}
+\newcommand{\eproof}{\hfill\qedsymbol}
+\newcommand{\Disp}{\displaystyle}
+\newcommand{\qe}{\hfill\(\bigtriangledown\)}
+\setlength{\columnseprule}{1 pt}
+
+
+\title{Math 335 Portfolio}
+\author{Jean Marie Linhart}
+\date{January 2019}
+
+\begin{document}
+
+\maketitle
+
+\section{Induction Proofs}
+\subsection{Ordinary Induction}
+\begin{normalsize}
+According to Kirchoff's Voltage Laws (KVL), we have the following equation:
+\begin{align*}
+&-12 + V_{R_3} + 3V_F = 0\\
+&\Longrightarrow V_{R_3} = 12 - 3V_F\\
+&\Longrightarrow R_3 = \frac{V_{R_3}}{I_{sccR_3}} = \frac{V_{R_3}}{I_F} = \frac{12 - 3V_F}{I_F}
+\end{align*}
+$\bullet$ In case of $V_F  = 3V \longrightarrow 3.4V$
+\begin{align*}
+&I_F = 25mA - 30mA\\
+&\Longrightarrow R_3 \in \left[\frac{12 - 3x3.4}{30x10^{-3}} ; \frac{12 - 3x3}{25x10^{-3}}\right]\\
+&\iff R_3 \in [60 ; 120] (\Omega)
+\end{align*}
+$\bullet$ Choose $R_1 = 40000\Omega$, we have the following expression:
+\begin{align*}
+&I_{R_2} = I_L = \frac{0.7}{40000} = 1.78x10^6(A)
+\end{align*}
+Results below can be extracted by appling kirchoff's Voltage Laws. 
+\begin{align*}
+&-12 + V_{R_2} + V_{R_L} = 0\\
+&\Longrightarrow V_{R_2} = 12 - V_{R_L} = 12 - 0.7 = 11.3V\\
+&\Longrightarrow R_2 = \frac{V_{R_2}}{I_{R_2}} = 645414 (\Omega)
+\end{align*}
+Base on the value of $R_L$ measured by VOM, the following results can be infered:
+\begin{align*}
+&R_2 = \frac{11.3}{\frac{0.7}{R_L}} = \frac{11.3 X R_L}{0.7} = 12.14R_L (\Omega)
+\end{align*}
+Applying Kirchoff's Laws:
+\begin{align*}
+&I_{R_1} = I_{R_2} + I_{R_3}\\
+&\Longrightarrow I_{R_1} = I_{R_2} + I_F\\
+&\Longrightarrow I_{R_1} = \frac{0.7}{R_2} + I_F\\
+&\Longrightarrow I_{R_1} \in [0.025 ; 0.03] (A)
+\end{align*}
+Measurement results in laboratory reportedly show that voltage at the two ends of the capacitor varies around $12\sqrt{2} (V)$ 
+\begin{align*}
+V_{0C} = 12\sqrt{2} (V)
+\end{align*}
+$\bullet$ In case of the worst situation when $V_{DC} = 18.8(V)$
+$R_1$ is designed in ways such that $V_{DC} = 12 (V)$
+\begin{align*}
+&\Longrightarrow R_1 = \frac{18.8 - 12}{I_{R_1}}\\
+&\Longrightarrow R_1 \in [227 ; 275]
+\end{align*}
+Power: Power Index $\geq 1.5$
+In case of $V_{DC}$ exceeds the common voltage of $12V$, the circuit can withstand up to $18V$ before suffering structural damages.
+\begin{align*}
+&\Longrightarrow V_{DC} without R_1 = 18\sqrt{2}\\
+&\Longrightarrow P_{R_1} = \frac{(18\sqrt{2} - R_1)^2}{R_1}\\
+&\Longrightarrow R_1 \in [227 ; 211]\\
+\end{align*}
+Procedure:\\
+1. Components list\\
+- Zener Diode\\
+- 100$\Omega$ Resistor\\
+- 470000$\Omega$ Resistor\\
+- 3 LEDs\\
+- C1815 NPN Transistor\\
+- Light Sensoring Resistor\\
+- 4 Diodes\\
+2. $R_1$, $R_2$, $R_3$ Build Method\\
+%Ve 2 mach R1 R2 dum t nha m
+$R_3 = R = 100(\Omega)$.\\
+\end{normalsize}
+\end{document}
