@@ -185,8 +185,8 @@
 
 \maketitle
 
-\section{$R_1$, $R_2$, $R_3$ Calculation and Power Evaluation}
-\subsection{$R_1$, $R_2$ and $R_3$ Calculation}
+\section{Proceeding Steps}
+\subsection{Circuit Analysis}
 \begin{figure}[ht]
 		\begin{center}
 			
@@ -196,31 +196,30 @@
 		\end{center}
 \end{figure}
 \begin{normalsize}
-According to Kirchoff's Voltage Laws (KVL), we have the following equation:
+When clapping-sound is not recorded, this expression can be inferred:
 \begin{align*}
-&-12 + V_{R_3} + 3V_F = 0\\
-&\Longrightarrow V_{R_3} = 12 - 3V_F\\
-&\Longrightarrow R_3 = \frac{V_{R_3}}{I_{sccR_3}} = \frac{V_{R_3}}{I_F} = \frac{12 - 3V_F}{I_F}(\Omega)
+&V_{VG1} = 0(V)\\
+&V_{R_{4,5}} = \frac{V_1 x R_5}{R_4 + R_5} = \frac{12x10}{10 + 10} (V)
 \end{align*}
 $\bullet$ In case of $V_F  = 3V \longrightarrow 3.4V$.
 \begin{align*}
-&I_F = 25mA - 30mA\\
-&\Longrightarrow R_3 \in \left[\frac{12 - 3x3.4}{30x10^{-3}} ; \frac{12 - 3x3}{25x10^{-3}}\right]\\
-&\iff R_3 \in [60 ; 120] (\Omega)
+&V_3 = V_2 = 6 (V)\\ 
+&\Rightarrow V_{2,3} = 0 (O)
 \end{align*}
 $\bullet$ Choose $R_L = 40000\Omega$, we have the following expression:
 \begin{align*}
-&I_{R_2} = I_L = \frac{0.7}{40000} = 1.78x10^6(A)
+V_{out} = V_{R_1} = V_{R_2} = 6 (V)\\
 \end{align*}
-Results below can be extracted by appling kirchoff's Voltage Laws. 
+When a clapping-sound is detected:
 \begin{align*}
-&-12 + V_{R_2} + V_{R_L} = 0\\
-&\Longrightarrow V_{R_2} = 12 - V_{R_L} = 12 - 0.7 = 11.3(V)\\
-&\Longrightarrow R_2 = \frac{V_{R_2}}{I_{R_2}} = 645414 (\Omega)
+&V_{VG1} \neq 0 (V)\\
 \end{align*}
-Base on the value of $R_L$ measured by VOM, the following results can be infered:
+$C_1$ Helps standardize the signal.\\
+$\Rightarrow$ $V_{mic}$ change.\\
+$\Rightarrow V_{mic} = 6(V) - V_{VG1}$.\\
+There is a current running through the circuit.\\
 \begin{align*}
-&R_2 = \frac{11.3}{\frac{0.7}{R_L}} = \frac{11.3 X R_L}{0.7} = 12.14R_L (\Omega)
+i = \frac{V_{mic}}{R_2} = \frac{V_{mic}}{1K(\Omega)}
 \end{align*}
 Applying Kirchoff's Laws:
 \begin{align*}
