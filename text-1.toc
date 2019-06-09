@@ -1,0 +1,10 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}$R_1$, $R_2$, $R_3$ Calculation and Power Evaluation}{3}
+\contentsline {subsection}{\numberline {1.1}$R_1$, $R_2$ and $R_3$ Calculation}{3}
+\contentsline {subsection}{\numberline {1.2}Power Evaluation}{4}
+\contentsline {section}{\numberline {2}Proceeding Steps}{6}
+\contentsline {subsection}{\numberline {2.1}Components List}{6}
+\contentsline {subsection}{\numberline {2.2}$R_1$, $R_2$, $R_3$ Build Method}{6}
+\contentsline {subsubsection}{\numberline {2.2.1}$R_1$ Component}{6}
+\contentsline {subsubsection}{\numberline {2.2.2}$R_2$ Component}{6}
+\contentsline {subsubsection}{\numberline {2.2.3}$R_3$ Component}{7}
