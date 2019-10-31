@@ -1,3 +1,4 @@
+
 \documentclass[12pt]{extarticle}
 %Some packages I commonly use.
 \usepackage[english]{babel}
@@ -89,7 +90,7 @@
 	
 	\HRule\\[0.4cm]
 	
-	{\huge\bfseries Report Project 1: A LIGHT SENSING CIRCUIT}\\[0.4cm] % Title of your document
+	{\huge\bfseries Report Project 2: A CLAP-SWITCH CIRCUIT}\\[0.4cm] % Title of your document
 	
 	\HRule\\[0.5cm]
 	\begin{figure}[ht]
@@ -186,7 +187,7 @@
 \maketitle
 
 \section{Proceeding Steps}
-\subsection{Circuit Analysis}
+
 \begin{figure}[ht]
 		\begin{center}
 			
@@ -196,115 +197,78 @@
 		\end{center}
 \end{figure}
 \begin{normalsize}
-When clapping-sound is not recorded, this expression can be inferred:
+\tab $\blacktriangleright$ Circuit Analysis When System In Stand By State (No Sound Detected).
 \begin{align*}
-&V_{VG1} = 0(V)\\
-&V_{R_{4,5}} = \frac{V_1 x R_5}{R_4 + R_5} = \frac{12x10}{10 + 10} (V)
+&V_{G1} = 0(V)
 \end{align*}
-$\bullet$ In case of $V_F  = 3V \longrightarrow 3.4V$.
+Applying Kirchhoff's Voltage Law, this expression can be inferred:
+\begin{align*}
+&V_{R_{4,5}} = \frac{V_1 . R_5}{R_4 + R_5} = \frac{12x10}{10 + 10} (V)
+\end{align*}
+$\bullet$ Hence $V_2$ and $V_3$ share a common intput value of 6 volts, the output signal of\\Op-Amplifier is zero.  
 \begin{align*}
 &V_3 = V_2 = 6 (V)\\ 
-&\Rightarrow V_{2,3} = 0 (O)
+\Longrightarrow &V_{2,3} = 0 (V)
 \end{align*}
-$\bullet$ Choose $R_L = 40000\Omega$, we have the following expression:
+$\bullet$ Thus $V_{out}$ takes the same value with $V_{R_1}$ and $V_{R_2}$.
 \begin{align*}
-V_{out} = V_{R_1} = V_{R_2} = 6 (V)\\
+V_{out} = V_{R_1} = V_{R_2} = 6 (V)
 \end{align*}
-When a clapping-sound is detected:
+\tab $\blacktriangleright$ Circuit Analysis When System In Operation State (Clapping-Sound Is Recorded).
 \begin{align*}
-&V_{VG1} \neq 0 (V)\\
+&V_{G1} \neq 0 (V)
 \end{align*}
-$C_1$ Helps standardize the signal.\\
-$\Rightarrow$ $V_{mic}$ change.\\
-$\Rightarrow V_{mic} = 6(V) - V_{VG1}$.\\
-There is a current running through the circuit.\\
+$\bullet$ If a sound is recorded. The microphone converts physical sound waves into electronic pulses. Eletronic signals run through wires to $C_1$ capacitor. $C_1$ is reposible for stablizing the pulses.\\
+\\
+This results in changes of $V_{mic}$:
 \begin{align*}
-i = \frac{V_{mic}}{R_2} = \frac{V_{mic}}{1K(\Omega)}
+&V_{mic} = 6 - V_{G1} (V)
 \end{align*}
-Applying Kirchoff's Laws:
+Electronically, a current would run through the circuit.
 \begin{align*}
-&I_{R_1} = I_{R_2} + I_{R_3}\\
-&\Longrightarrow I_{R_1} = I_{R_2} + I_F\\
-&\Longrightarrow I_{R_1} = \frac{0.7}{R_2} + I_F\\
-&\Longrightarrow I_{R_1} \in [0.025 ; 0.03] (A)
+i = \frac{V_{mic}}{R_2} = \frac{V_{mic}}{1K(\Omega)} (A)
 \end{align*}
-Measurement results in laboratory reportedly show that voltage at the two ends of the capacitor peaks at $12\sqrt{2} (V)$.
+Subsequently, $V_{out}$ suffers a voltage drop down.
 \begin{align*}
-V_{0C} = 12\sqrt{2} (V)
+&V_{out} = 6(V) - \frac{100K(\Omega).V_{G1}}{1K(\Omega)} (V)
 \end{align*}
-$\bullet$ In case of the worst situation when $V_{DC} = 18.8(V)$ so that $R_1$ is going to be designed in a way such that $V_{DC} = 12 (V)$.
+$\bullet $ Theoretically, Amplification at the output port $U_1$ is demonstrated in the expression\\below:
 \begin{align*}
-&\Longrightarrow R_1 = \frac{18.8 - 12}{I_{R_1}}\\
-&\Longrightarrow R_1 \in [227 ; 275](\Omega)
+&U_1 = \frac{R3}{R_2} (V)
 \end{align*}
-\subsection{Power Evaluation}
-Given the fact that, the circuit is designed to operate normally at the 12V voltage level. While the value of $V_{AC}$ reportedly stations at 14V ($V_{AC} = 14V$), which resulted in the following value:
+Applying Nodal Analysis, $V_{ref}$ can be calculated by the following formular:
 \begin{align*}
-&V_{DC without R_1} =  18.8(V)
+&V_{ref} = \frac{R_6}{R_6 + R_7}
 \end{align*}
-That result leads to the below calculations:
+Similarly, through Nodal Analysis, $V_{rec}$ estimation is illustrated bellow:
 \begin{align*}
-&\bullet V_{R_1} = 18.8 - 12 = 6.8(V)\\
-&\bullet P_{R_1} = \frac{(18\sqrt{2} - R_1)^2}{R_1}\\
-&\Longrightarrow P_{R_1} \in [0.168 ; 0.204](W)
+&V_{Rec} = V_{out} - 0.7 (V)
 \end{align*}
-Given the Safe Factor to be $\geq 1.5$. If $V_{AC}$ exceeds the common voltage of $12V$, the circuit can withstand up to $18.8V$ before suffering structural damages.
+This results in $V_{rec} > V_{ref}$ which cause reversed polarity in the second amplifier.
 \begin{align*}
-&P_{R_1} = \frac{(18\sqrt{2} - 12)^2}{R_1}\\
-&\Longrightarrow P_{R_1} \in [0.7 ; 0.8](W)
+&U_2 = 0(V)
 \end{align*}
-$\bullet$ Choose $R_1 = 250\Omega, 0.5W$ in order to guarantee that the circuit can withstand the voltage up to 1.5 times higher than the normal designed voltage.\\
+$\bullet $ Which means no electronic signal comes to Switch port.
+\begin{align*}
+&V_{sw} = 0(V)
+\end{align*}
+Meanwhile, the subsequent voltage differentitation at the two ends of LED1 makes it glow. \\
+\\
+$\bullet $ Hence $V_{sw}$ is connected to signal pin of IC 4017 counter so that $Y_1$ would be shifted to HIGH.\\
+\\
+In the meantime $Y_1$ triggers the collector pin of the C1815 NPN transitor C1815. At this point, a connection is established so that a current running though the coil is generated.\\
+\\
+Magnetic field of the coil attracts the switch conducing to connection between COM (Communication port) and NC (Normally closed port) which signals control of the\\ device.
 %----------------------------------------------------------------------------------------
 \clearpage
-\section{Proceeding Steps}
-\subsection{Components List} 
-\tab - 100$\Omega$, $\sfrac{1}{4}W$ Resistor\\
-\tab - 150$\Omega$, $0.5W$ Resistor\\
-\tab - 470$K\Omega$, $\sfrac{1}{4}W$ Resistor\\
-\tab - Light Sensoring Resistor\\
-\tab - Zener Diode\\
-\tab - C1815 NPN Transistor\\
-\tab - 3 LEDs\\
-\tab - 4 Diodes
-\subsection{$R_1$, $R_2$, $R_3$ Build Method} 
-
-\subsubsection{$R_1$ Component}
-Only 150$\Omega$, $0.5W$ Resistor is avalable. Thus system of $R_1$ resistors are built as follow in order to get the exactly calculated value $R_1 = 250(\Omega)$.\\
-{\bfseries R1:}
-	\begin{figure}[ht]
-		\begin{center}
-			
-			\includegraphics[scale=0.75]{R1.JPG}\\
-	
-		\end{center}
-		
-		
-	\end{figure}
-	\\
-\subsubsection{$R_2$ Component}
-System of $R_2$ resistors are built as follow in order to get the exactly calculated value $R_2 = 645(K\Omega)$ .\\
-{\bfseries R2:}
-	\begin{figure}[ht]
-		\begin{center}
-			
-			\includegraphics[scale=0.75]{R2.JPG}\\
-	
-		\end{center}
-		
-		
-	\end{figure}
-	\\
-\subsubsection{$R_3$ Component}
-\tab $R_3 = R = 100(\Omega)$.\\
-{\bfseries R3:}
-	\begin{figure}[ht]
-		\begin{center}
-			
-			\includegraphics[scale=0.75]{R3.JPG}\\
-	
-		\end{center}
-		
-		
-	\end{figure}
+\section{Results Evaluation}
+\tab $\triangleright$ Amplification: x100.\\
+\tab $\triangleright$ Clapping range: 0.5(m).
+\section{Application}
+In spite of poor performance and improper functionality in noisy enviroment, the system performed flawlessly in quiet enviroment this could be attributed to the reason why clapping-switch system could be extensively used in controling home devices (lights, heating and air-conditioning systems, fans, etc). \\
+\\
+Nonetheless, more advanced, the system could be used as a cheap and economic theif dectecting system which functions as an ear listen to unidentified sound.\\
+\\
+However longer clapping range and more precise sound detection must be taken into account in order to make the system more user-friendly comercalizable.
 \end{normalsize}
 \end{document}
